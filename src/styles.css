@@ -1,5 +1,87 @@
 @import "tailwindcss";
 
+body {
+  min-height: 100vh;
+}
+
+/* ── Weather aurora background ─────────────────────────────────────── */
+.weather-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  animation: bgFadeIn 2s ease forwards;
+}
+
+.weather-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.7;
+}
+
+.weather-blob-1 {
+  width: 75vw;
+  height: 75vh;
+  background-color: var(--wc1);
+  top: -20%;
+  left: -15%;
+  animation: blobDrift1 20s ease-in-out infinite;
+}
+
+.weather-blob-2 {
+  width: 65vw;
+  height: 65vh;
+  background-color: var(--wc2);
+  bottom: -20%;
+  right: -15%;
+  animation: blobDrift2 26s ease-in-out infinite;
+}
+
+.weather-blob-3 {
+  width: 55vw;
+  height: 55vh;
+  background-color: var(--wc3);
+  top: 35%;
+  left: 30%;
+  animation: blobDrift3 32s ease-in-out infinite;
+}
+
+@keyframes bgFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  50%       { transform: translate(8vw, 10vh) scale(1.12); }
+}
+
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0,     0)    scale(1);   }
+  50%       { transform: translate(-9vw, -8vh) scale(0.92); }
+}
+
+@keyframes blobDrift3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    }
+  33%       { transform: translate(-46%, -55%) scale(1.1); }
+  66%       { transform: translate(-54%, -45%) scale(0.9); }
+}
+
+@media print {
+  .weather-bg { display: none; }
+}
+
+/* text-gray-700 appears in hover: variants so can't use replace_all in template */
+.dark .text-gray-700 {
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* contact section has text-black which also needs dark override */
+.dark .text-black {
+  color: #e5e7eb; /* gray-200 */
+}
+
 /* Tell Tailwind v4 where to scan for class names (Angular doesn't expose templates through the virtual FS) */
 @source "./app/**/*.{html,ts}";
 @source "./index.html";
