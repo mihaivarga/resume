@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Tell Tailwind v4 where to scan for class names (Angular doesn't expose templates through the virtual FS) */
+@source "./app/**/*.{html,ts}";
+@source "./index.html";
+
 /* Class-based dark mode: replicates v3 darkMode: 'class' */
 @variant dark (&:where(.dark, .dark *));
 
