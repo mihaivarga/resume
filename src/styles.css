@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: replicates v3 darkMode: 'class' */
+@variant dark (&:where(.dark, .dark *));
+
+/* Flowbite v4 plugin */
+@plugin "flowbite/plugin";
+
+/* Custom theme values referenced in app.component.html */
+@theme {
+  --font-jost: "Jost", sans-serif;
+  --leading-snugish: 1.275;
+  --height-letter: 11in;
+  --max-height-letter: 11in;
+  --max-width-letter: 8.5in;
+  --spacing-1_6: 0.4rem;
+}
