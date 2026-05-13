@@ -6,13 +6,11 @@
       >
       <div class="flex space-x-4">
         <a href="#" (click)="goTo('home-part')" class="text-gray-800 hover:text-blue-600">Home</a>
-        <a href="#" (click)="goTo('summary-part')" class="text-gray-800 hover:text-blue-600"
-          >Summary</a
-        >
-        <a href="#" (click)="goTo('education-part')" class="text-gray-800 hover:text-blue-600">Education</a>
+        <a href="#" (click)="goTo('summary-part')" class="text-gray-800 hover:text-blue-600">Summary</a>
         <a href="#" (click)="goTo('skills-part')" class="text-gray-800 hover:text-blue-600">Skills</a>
         <a href="#" (click)="goTo('experience-part')" class="text-gray-800 hover:text-blue-600">Experience</a>
-        <a href="#" class="text-gray-800 hover:text-blue-600">Contact</a>
+        <a href="#" (click)="goTo('education-part')" class="text-gray-800 hover:text-blue-600">Education</a>
+        <a href="#" (click)="goTo('contact-part')" class="text-gray-800 hover:text-blue-600">Contact</a>
       </div>
     </div>
   </nav>
@@ -21,7 +19,7 @@
 <main class="font-jost hyphens-manual pt-8">
   <!-- Page -------------------------------------------------------------------------------------------------------->
   <section
-    class="p-3 my-auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 sm:p-9 md:p-16 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-o xsm:p-8 print:bg-white md:max-w-letter md:h-letter lg:h-letter"
+    class="p-3 my-auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 sm:p-9 md:p-16 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-o xsm:p-8 print:bg-white md:max-w-letter"
   >
     <!-- Name ---------------------------------------------------------------------------------------------------->
     <header
@@ -34,14 +32,13 @@
         </h1>
         <!--Job Title--------------------------------------------------------------------------------------------------------->
         <h2 class="m-0 text-2xl font-semibold text-gray-700 leading-snugish">
-          Freelancer Full Stack Developer
+          Lead Full Stack Developer &mdash; Freelancer
         </h2>
         <!--Location --------------------------------------------------------------------------------------------------------->
-
         <h3
           class="m-0 mt-2 text-xl font-semibold text-gray-500 leading-snugish"
         >
-          Remote, Cluj-Napoca, Romania
+          Cluj-Napoca, Cluj, Romania
         </h3>
       </section>
       <!--   Initials Block         -->
@@ -57,91 +54,14 @@
 
     <!-- Column -------------------------------------------------------------------------------------------------->
     <section
-      class="col-gap-8 print:col-count-2 print:h-letter-col-full col-fill-balance md:col-count-2 md:h-letter-col-full"
+      class="col-gap-8 print:col-count-2 print:h-letter-col-full col-fill-balance md:col-count-2"
     >
       <section class="flex-col">
-        <!-- Contact Information ------------------------------------------------------------------------------------->
-        <section class="pb-2 mt-4 mb-0 first:mt-0">
-          <!-- To keep in the same column -------------------------------------------------------------------------->
-          <section class="break-inside-avoid">
-            <section
-              class="pb-4 mb-2 border-b-4 border-gray-300 break-inside-avoid"
-            >
-              <ul class="pr-7 list-inside">
-                <li
-                  class="mt-1 leading-normal text-black text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md print:"
-                >
-                  <a href="https://mihaivarga.com" class="group">
-                    <span
-                      class="mr-2 text-lg font-semibold text-gray-700 leading-snugish"
-                    >
-                      Portfolio:
-                    </span>
-                    mihaivarga.com
-                    <span
-                      class="inline-block font-normal text-black text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black print:"
-                    >
-                      ↗
-                    </span>
-                  </a>
-                </li>
-                <li
-                  class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
-                >
-                  <a href="https://github.com/mihaivarga" class="group">
-                    <span
-                      class="mr-5 text-lg font-semibold text-gray-700 leading-snugish"
-                    >
-                      Github:
-                    </span>
-                    mihaivarga
-                    <span
-                      class="inline-block font-normal text-black text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black print:"
-                    >
-                      ↗
-                    </span>
-                  </a>
-                </li>
-
-                <li
-                  class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
-                >
-                  <a href="mailto:contact@mihaivarga.com" class="group">
-                    <span
-                      class="mr-8 text-lg font-semibold text-gray-700 leading-snugish"
-                    >
-                      Email:
-                    </span>
-                    contact&#64;mihaivarga.com
-                    <span
-                      class="inline-block font-normal text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black"
-                    >
-                      ↗
-                    </span>
-                  </a>
-                </li>
-                <li
-                  class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
-                >
-                  <a href="tel:+40748156659">
-                    <span
-                      class="mr-5 text-lg font-semibold text-gray-700 leading-snugish"
-                    >
-                      Phone:
-                    </span>
-                    +40 748 15 66 59
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </section>
-        </section>
         <!--Summary ---------------------------------------------------------------------------------------------------------->
         <section
           id="summary-part"
           class="pb-2 pb-4 mt-0 border-b-4 border-gray-300 first:mt-0"
         >
-          <!-- To keep in the same column -->
           <section class="break-inside-avoid">
             <h2
               class="mb-2 text-xl font-bold tracking-widest text-gray-700 print:font-normal"
@@ -151,149 +71,34 @@
 
             <section class="mb-2 break-inside-avoid">
               <p class="mt-2 leading-normal text-gray-700 text-md">
-                Hello Reader,<br /><br />
+                I am a Lead Full Stack Developer and Technical Lead with over 15
+                years of experience architecting, building, and scaling web
+                applications and microservices. I specialize in modern
+                JavaScript/TypeScript ecosystems (NodeJS, Angular, React) and
+                cloud infrastructure (AWS, Azure), with a proven track record of
+                taking complex projects from client ideation to successful
+                deployment.<br /><br />
 
-                Ever since my childhood I've been passionate about technology.
-                Getting my first computer (with big sacrifices) from my parents
-                was the best gift ever. I was already into some hardware /
-                software home hacking even before getting the new personal
-                gadget, in local town kids computer science clubs. My career
-                path was starting to get clear each day.<br /><br />
-
-                Next years I studied computer science oriented high school, in
-                the intensive computer science class. Even there I was into
-                finding out more about new technologies, both software and
-                hardware, to be able to create fun and helpful applications.
-                Unfortunately, classes felt like old tech, however I learned
-                hard and aced them.<br /><br />
-
-                Naturally my faculty years couldn't have been anything else than
-                attending computer science university, UBB locally in my home
-                town Cluj-Napoca (English courses). There while courses started
-                to get complicated and somehow interesting, I still was eager to
-                learn non-curriculum-oriented technologies, in those days, so I
-                started working as web developer (PHP). Web development was not
-                a course back then. When I was getting my degree, I had already
-                switched several jobs at some companies while programming with
-                different interesting technologies (PHP, JS, C#, C++, SQL, the
-                list can go on). Programming languages felt like just another
-                syntax to be learned, framework looked more like tools I can
-                use, so all these were not a blocking step to developing and
-                delivering projects.<br /><br />
-
-                The next years opportunity found me to start working as a
-                freelancer, jumping from a tech stack to another, always looking
-                for new ways to improve my experience and development
-                performance. Learned how to manage teams. Learned now to take a
-                project from client description to deployment. Learned how to
-                find simple and active ways of engaging junior developers into
-                the experience I had as a freelancer. Learned how to teach and
-                share what I know to others through open source or junior
-                developer guidance meetings.<br /><br />
-
-                More details about my freelance experience can be looked into
-                below in my Experience section. Hopefully you like what you
-                see.<br /><br />
-
-                With the hopes that reading this has not bored you a ton,<br /><br />
-
-                I thank you Reader.
+                As a career-long tech enthusiast and freelancer, I view
+                programming languages simply as tools &mdash; I am highly
+                adaptable and pride myself on my ability to jump seamlessly
+                between tech stacks to find the best architectural solutions.
+                Beyond writing clean, scalable code, I am deeply passionate
+                about engineering leadership. I excel at managing agile teams,
+                mentoring junior developers, and translating complex business
+                requirements into robust technical realities.
               </p>
-            </section>
-          </section>
-        </section>
-        <!--Education -------------------------------------------------------------------------------------------------------->
-        <section
-          id="education-part"
-          class="pb-0 mt-2 border-b-4 border-gray-300 first:mt-0 break-inside-avoid"
-        >
-          <!-- To keep in the same column -->
-          <section class="break-inside-avoid">
-            <h2
-              class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal"
-            >
-              EDUCATION
-            </h2>
-            <!-- school --------------------------------------------------------------------------->
-            <section class="mt-2 border-b-2 break-inside-avoid">
-              <header>
-                <h3 class="text-lg font-semibold text-gray-700 leading-snugish">
-                  California State University East Bay
-                </h3>
-                <p class="leading-normal text-gray-500 text-md">
-                  2009 &ndash; 2014 | Bachelor of Arts
-                </p>
-              </header>
-              <ul class="mt-2 list-disc list-inside text-gray-800 text-md">
-                <li>
-                  <span class="font-semibold text-md"> Major: </span>
-                  Political Science
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> Minor: </span>
-                  Economics
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> GPA: </span>
-                  3.9
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> Skills: </span>
-                  Research, Analysis, Critical Thinking, Communication
-                </li>
-              </ul>
-            </section>
-            <!--school 2--------------------------------------------------------------------------------------------->
-            <section class="pb-4 mt-4 mb-4 border-b-2 break-inside-avoid">
-              <header>
-                <h3
-                  class="flex-grow text-lg font-semibold text-gray-700 leading-snugish"
-                >
-                  Las Positas Community College
-                </h3>
-                <p class="leading-normal text-gray-500 text-md">
-                  2018 &ndash; Present | Associate of Science/Continuing
-                  Education
-                </p>
-              </header>
-              <ul class="mt-2 list-disc list-inside text-gray-800 text-md">
-                <li>
-                  <span class="font-semibold text-md"> Major: </span>
-                  Computer Science
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> GPA: </span>
-                  4.0
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> Skills: </span>
-                  Programming, Algorithms, Data Structures, Software Development
-                </li>
-              </ul>
-            </section>
-
-            <!--school 3 --------------------------------------------------------------------------------->
-            <section class="pb-4 mt-4 mb-4 break-inside-avoid">
-              <header>
-                <h3
-                  class="flex-grow text-lg font-semibold text-gray-700 leading-snugish"
-                >
-                  Codify Academy
-                </h3>
-                <p class="leading-normal text-gray-500 text-md">
-                  2018 | Certificate
-                </p>
-              </header>
-              <ul class="mt-2 list-disc list-inside text-gray-800 text-md">
-                <li>
-                  <span class="font-semibold text-md"> Subject: </span>
-                  Front End Development
-                </li>
-                <li>
-                  <span class="font-semibold text-md"> Skills: </span>
-                  HTML, CSS, JavaScript, Web Development
-                </li>
-              </ul>
+              <p class="mt-3 leading-normal text-gray-700 text-md">
+                <span class="font-semibold text-gray-800">Core Competencies:</span>
+                Full-Stack Architecture &bull; Microservices &bull; Cloud
+                Infrastructure (AWS/Azure) &bull; CI/CD &amp; GitOps &bull; Big
+                Data Integration &bull; Team Leadership &amp; Mentorship
+              </p>
+              <p class="mt-1 leading-normal text-gray-700 text-md">
+                <span class="font-semibold text-gray-800">Primary Stack:</span>
+                NodeJS, TypeScript, Angular, PHP, PostgreSQL, MySQL, Docker,
+                Kubernetes
+              </p>
             </section>
           </section>
         </section>
@@ -301,292 +106,452 @@
         <!--Begin Skills ----------------------------------------------------------------------------------------------------->
         <section
           id="skills-part"
-          class="pb-6 mt-0 mb-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid"
+          class="pb-6 mt-4 mb-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid"
         >
-          <!-- To keep in the same column -->
           <section class="break-inside-avoid">
             <h2
               class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal"
             >
               SKILLS
             </h2>
-            <section class="mb-0 break-inside-avoid">
-              <section class="mt-1 last:pb-1">
-                <ul
-                  class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6"
-                >
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    HTML5
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    CSS3
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    JavaScript
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    TypeScript
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Node.js
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    React.js
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Python
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    NoSQL
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Postgresql
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    MongoDB
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Linux
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    AWS
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    LLM/AI Prompting
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Web Design
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    UI/UX
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    CI/CD
-                  </li>
-                  <li
-                    class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset"
-                  >
-                    Lua
-                  </li>
-                </ul>
-              </section>
+
+            <!-- Backend -->
+            <section class="mb-2 break-inside-avoid">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-2 mb-1">Backend</p>
+              <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">NodeJS</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">TypeScript</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">PHP</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Python</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">.NET Core</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Go</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Java</li>
+              </ul>
+            </section>
+
+            <!-- Frontend -->
+            <section class="mb-2 break-inside-avoid">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-2 mb-1">Frontend</p>
+              <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">JavaScript</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Angular</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">React</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">VueJS</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">SCSS</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">jQuery</li>
+              </ul>
+            </section>
+
+            <!-- Cloud & DevOps -->
+            <section class="mb-2 break-inside-avoid">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-2 mb-1">Cloud &amp; DevOps</p>
+              <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">AWS CDK/Lambda/S3</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Azure</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">GCP</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Docker</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Kubernetes</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Terraform</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Helm</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">CI/CD</li>
+              </ul>
+            </section>
+
+            <!-- Databases -->
+            <section class="mb-2 break-inside-avoid">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-2 mb-1">Databases &amp; Data</p>
+              <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">PostgreSQL</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">MySQL</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">MongoDB</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">DynamoDB</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Databricks</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">OpenSearch</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Redis</li>
+              </ul>
+            </section>
+
+            <!-- Methodologies -->
+            <section class="mb-2 break-inside-avoid">
+              <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-2 mb-1">Methodologies &amp; Tools</p>
+              <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Agile</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Git</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Azure DevOps</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">Automated Testing</li>
+                <li class="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">LLM Integrations</li>
+              </ul>
             </section>
           </section>
         </section>
 
         <!--Experience ------------------------------------------------------------------------------------------------------>
         <section
-          id="experince-part" class="pb-2 pb-4 mt-4 border-b-4 border-gray-300 first:mt-0">
-          <!-- To keep in the same column ------------------------------------------------------------------------->
+          id="experience-part"
+          class="pb-2 pb-4 mt-4 border-b-4 border-gray-300 first:mt-0">
           <section class="break-inside-avoid">
             <h2
               class="mb-2 text-xl font-black tracking-widest text-gray-800 print:font-normal"
             >
               EXPERIENCE
             </h2>
-            <!--Job 1-->
+
+            <!-- Henkel -->
             <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
               <header>
                 <h3 class="font-semibold text-gray-800 text-md leading-snugish">
-                  Full Stack Web Developer
+                  Lead Full Stack Developer
                 </h3>
                 <p class="text-sm leading-normal text-gray-500">
-                  Jun 2018 &ndash; Present | Freelance
+                  Sep 2024 &ndash; Present (1.5 years) | <span class="font-medium text-gray-700">Henkel</span>
                 </p>
+                <p class="text-xs text-gray-400 mt-0.5">NodeJS (Apollo JS), TypeScript, Angular, Databricks, Azure</p>
               </header>
-              <ul
-                class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish"
-              >
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Created high-quality, customized web applications from
-                  scratch, employing a diverse set of programming languages,
-                  including HTML, CSS, JavaScript, PHP, and Python, to fulfill
-                  unique client requirements.
-                </li>
-                <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Leveraged a range of bleeding edge front-end frameworks like
-                  React.js, Nullstack and Vue.js, as well as back-end frameworks
-                  such as Node.js and Express, to deliver robust and scalable
-                  web solutions.
-                </li>
-                <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Designed and implemented databases using SQL and NoSQL
-                  technologies like MySQL, PostgreSQL, MongoDB, and Firebase,
-                  optimizing data storage and management.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Working in a team of 12 on an internal Big Data platform that unifies different data sources in Databricks for data visualization and manipulation by internal employees based on different permission levels.
                 </li>
               </ul>
             </section>
-            <!-- job 2  -->
+
+            <!-- AWIN Global -->
             <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
               <header>
                 <h3 class="font-semibold text-gray-800 text-md leading-snugish">
-                  Computer Repair Technician
+                  Lead Full Stack Developer
                 </h3>
-                <p class="text-sm text-gray-500 leading-snugish">
-                  Mar 2018 &ndash; Present | Freelance
+                <p class="text-sm leading-normal text-gray-500">
+                  Feb 2023 &ndash; Dec 2024 (1.5 years) | <span class="font-medium text-gray-700">AWIN Global</span>
                 </p>
+                <p class="text-xs text-gray-400 mt-0.5">NodeJS, TypeScript, Angular</p>
               </header>
-              <ul
-                class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish"
-              >
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Provided expert computer repair services to individuals and
-                  businesses, diagnosing and resolving hardware and software
-                  issues effectively.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Part of a team of 10 serving as the expert JavaScript unit available to other product teams within this affiliate marketing platform.
                 </li>
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Demonstrated proficiency across diverse operating systems
-                  (Windows, macOS, Linux) and hardware components, offering
-                  tailored solutions, including hardware upgrades, software
-                  installations, and malware removal.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Focused on complex implementations across auth, payment, and planning projects while keeping dependencies up to date.
                 </li>
               </ul>
             </section>
-            <!-- job 3 -->
+
+            <!-- FreewayCamper -->
             <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
               <header>
                 <h3 class="font-semibold text-gray-800 text-md leading-snugish">
-                  Assistant Manager
+                  Full Stack Developer
                 </h3>
-                <p class="text-sm text-gray-500 leading-snugish">
-                  May 2012 &ndash; Apr 2018 | Pet Food Express
+                <p class="text-sm leading-normal text-gray-500">
+                  Mar 2022 &ndash; Feb 2023 (1 year) | <span class="font-medium text-gray-700">FreewayCamper</span>
                 </p>
+                <p class="text-xs text-gray-400 mt-0.5">NodeJS, TypeScript, AWS Lambda, DynamoDB, AWS CDK, Angular, .NET Core</p>
               </header>
-              <ul
-                class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish"
-              >
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Trained and supervised staff in product knowledge, customer
-                  engagement, and sales techniques, ensuring a top-notch
-                  shopping experience for customers.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Worked in a team of 6 on a camper renting platform built with AWS Lambda functions and an Angular frontend, focusing on the booking flow and payment integrations.
                 </li>
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Maintained a pristine and organized store environment,
-                  fostering maximum customer satisfaction.
-                </li>
-                <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Demonstrated deep expertise in the pet food industry,
-                  including trends, products, and competitors, providing
-                  customers with informed recommendations and advice.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Delivered feature work and bug fixes on the legacy .NET Core / Angular application.
                 </li>
               </ul>
             </section>
-            <!-- job 4 -->
+
+            <!-- Businessmate -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Full Stack Lead Developer
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  Sep 2021 &ndash; May 2022 | <span class="font-medium text-gray-700">Businessmate</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">NestJS, TypeScript, Postgres, Redis, Minio, Keycloak, Kubernetes, Terraform, Helm, Angular, VueJS</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Led a team of 5 developers building a microservice-based business process automation platform using workflows and custom-defined data tables.
+                </li>
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Owned infrastructure DevOps responsibilities including Kubernetes cluster management with Terraform and Helm.
+                </li>
+              </ul>
+            </section>
+
+            <!-- Upper -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Backend Developer
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  Sep 2020 &ndash; Sep 2021 (1 year) | <span class="font-medium text-gray-700">Upper</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">NodeJS, TypeScript, NestJS, Postgres, Redis, AWS S3, Laravel</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Built GraphQL API integrations for a freelancers community platform, connecting third-party services including Google Calendar, Zoom, and PandaDoc.
+                </li>
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Maintained and extended the legacy PHP CMS built with Laravel Nova.
+                </li>
+              </ul>
+            </section>
+
+            <!-- WarnerBoothe -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Lead Full Stack Developer &amp; Technical Lead
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  Sep 2018 &ndash; Sep 2022 (4 years, part-time) | <span class="font-medium text-gray-700">WarnerBoothe</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">PHP, Node.js, .NET Core, MySQL, Yii2, Angular, React, Vue, AWS Lambda</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Led a team of 9 on a custom video generating platform and CMS with PHP and AWS Lambda backend APIs.
+                </li>
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Oversaw development of two companion native mobile apps (iOS and Android).
+                </li>
+              </ul>
+            </section>
+
+            <!-- Aktan -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Full Stack Developer
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  2019 (8 months) | <span class="font-medium text-gray-700">Aktan</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">Angular, Angular Material, Firebase, Firestore, Cloud Functions</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Developed an employee persona analysis platform in a team of 6, integrating backend AI services.
+                </li>
+              </ul>
+            </section>
+
+            <!-- Voya.ai -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Full Stack Developer
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  2017 &ndash; 2019 (2 years) | <span class="font-medium text-gray-700">Voya.ai</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">Angular, AngularJS, Node.js, TypeScript, Java, DevOps</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Worked in a team of 20 on a business travel platform with Java and Node.js backends and Angular.js / Angular frontends.
+                </li>
+              </ul>
+            </section>
+
+            <!-- CenterMetrics -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Full Stack Developer &amp; Technical Lead
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  2014 &ndash; 2017 (3 years, part-time) | <span class="font-medium text-gray-700">CenterMetrics</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">PHP, Angular, TypeScript</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Technical lead for a team of 5, primarily delivering a custom self-storage platform CMS for a US client.
+                </li>
+              </ul>
+            </section>
+
+            <!-- InsideOut Development -->
+            <section class="mb-2 border-b-2 border-gray-300 break-inside-avoid">
+              <header>
+                <h3 class="font-semibold text-gray-800 text-md leading-snugish">
+                  Full Stack Developer &amp; Technical Lead
+                </h3>
+                <p class="text-sm leading-normal text-gray-500">
+                  2009 &ndash; 2017 (8.5 years) | <span class="font-medium text-gray-700">InsideOut Development</span>
+                </p>
+                <p class="text-xs text-gray-400 mt-0.5">PHP (Laravel, Symfony), MySQL, MongoDB, AngularJS, Angular 2+, Java (Salesforce), C#</p>
+              </header>
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Managed a team of 3 developers and QA, Linux server administration, and security maintenance.
+                </li>
+                <li>
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  Developed internal and client-facing web apps across a wide range of stacks and participated in product planning meetings.
+                </li>
+              </ul>
+            </section>
+
+            <!-- Other past experiences -->
             <section class="mb-2 border-b-0 border-gray-300 break-inside-avoid">
               <header>
                 <h3 class="font-semibold text-gray-800 text-md leading-snugish">
-                  Executive Assistant
+                  Other Past Experience
                 </h3>
-                <p class="text-sm text-gray-500 leading-snugish">
-                  Jun 2009 &ndash; Dec 2011 | 360 Custom Closets and Cabinets
-                </p>
               </header>
-              <ul
-                class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish"
-              >
+              <ul class="pl-3 mt-2 font-normal text-gray-700 text-md leading-snugish">
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Provided high-level administrative support to the small
-                  business executive, managing schedules, travel arrangements,
-                  and coordinating meetings and events.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  <span class="font-medium">ForumConsult</span> &mdash; Full Stack Developer &amp; Technical Lead on a job platform [PHP, MySQL, JS]
                 </li>
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Managed communication on behalf of the executive, including
-                  answering phone calls and emails, ensuring timely and
-                  professional responses to inquiries and requests.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  <span class="font-medium">Logicode</span> &mdash; .NET Developer (C++, C#) and Windows Mobile 6/7 &amp; Windows CE applications
                 </li>
                 <li>
-                  <span
-                    class="text-gray-500 transform -translate-y-px select-none"
-                  >
-                    &rsaquo;
-                  </span>
-                  Maintained relationships with vendors, clients, and external
-                  stakeholders, ensuring professionalism and alignment with the
-                  business's values.
+                  <span class="text-gray-500 transform -translate-y-px select-none">&rsaquo;</span>
+                  <span class="font-medium">Evoluxis</span> &mdash; Technical Lead on a custom ERP platform startup [PHP, JS]
                 </li>
               </ul>
+            </section>
+          </section>
+        </section>
+
+        <!--Education -------------------------------------------------------------------------------------------------------->
+        <section
+          id="education-part"
+          class="pb-0 mt-4 border-b-4 border-gray-300 first:mt-0 break-inside-avoid"
+        >
+          <section class="break-inside-avoid">
+            <h2
+              class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal"
+            >
+              EDUCATION
+            </h2>
+            <!-- UBB -->
+            <section class="mt-2 border-b-2 break-inside-avoid">
+              <header>
+                <h3 class="text-lg font-semibold text-gray-700 leading-snugish">
+                  &ldquo;Babe&#537;-Bolyai&rdquo; University Cluj-Napoca
+                </h3>
+                <p class="leading-normal text-gray-500 text-md">
+                  2004 &ndash; 2008 | Bachelor of Science
+                </p>
+              </header>
+              <ul class="mt-2 list-disc list-inside text-gray-800 text-md">
+                <li>
+                  <span class="font-semibold text-md">Faculty: </span>
+                  Informatics &mdash; Computer Software Engineering
+                </li>
+                <li>
+                  <span class="font-semibold text-md">Language: </span>
+                  Studied in native English
+                </li>
+              </ul>
+            </section>
+            <!-- Highschool -->
+            <section class="pb-4 mt-4 mb-4 break-inside-avoid">
+              <header>
+                <h3 class="flex-grow text-lg font-semibold text-gray-700 leading-snugish">
+                  &lsquo;Avram Iancu&rsquo; Highschool Cluj-Napoca
+                </h3>
+                <p class="leading-normal text-gray-500 text-md">
+                  2000 &ndash; 2004 | Computer Science Class
+                </p>
+              </header>
+              <ul class="mt-2 list-disc list-inside text-gray-800 text-md">
+                <li>
+                  <span class="font-semibold text-md">Focus: </span>
+                  Computer Science
+                </li>
+              </ul>
+            </section>
+          </section>
+        </section>
+
+        <!-- Contact Information ------------------------------------------------------------------------------------->
+        <section
+          id="contact-part"
+          class="pb-2 mt-4 mb-0 first:mt-0"
+        >
+          <section class="break-inside-avoid">
+            <section class="break-inside-avoid">
+              <h2
+                class="mb-2 text-lg font-bold tracking-widest text-gray-700 print:font-normal"
+              >
+                CONTACT
+              </h2>
+              <section class="pb-4 mb-2 border-b-4 border-gray-300 break-inside-avoid">
+                <ul class="pr-7 list-inside">
+                  <li
+                    class="mt-1 leading-normal text-black text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md print:"
+                  >
+                    <a href="https://mihaivarga.com" class="group">
+                      <span class="mr-2 text-lg font-semibold text-gray-700 leading-snugish">
+                        Portfolio:
+                      </span>
+                      mihaivarga.com
+                      <span class="inline-block font-normal text-black text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black print:">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
+                  >
+                    <a href="https://github.com/mihaivarga" class="group">
+                      <span class="mr-5 text-lg font-semibold text-gray-700 leading-snugish">
+                        Github:
+                      </span>
+                      mihaivarga
+                      <span class="inline-block font-normal text-black text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black print:">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
+                  >
+                    <a href="mailto:me.shuv@gmail.com" class="group">
+                      <span class="mr-8 text-lg font-semibold text-gray-700 leading-snugish">
+                        Email:
+                      </span>
+                      me.shuv&#64;gmail.com
+                      <span class="inline-block font-normal text-gray-500 transition duration-100 ease-in group-hover:text-gray-700 print:text-black">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                  <li
+                    class="mt-1 leading-normal text-gray-500 transition duration-100 ease-in hover:text-gray-700 text-md"
+                  >
+                    <a href="tel:+40748156659">
+                      <span class="mr-5 text-lg font-semibold text-gray-700 leading-snugish">
+                        Phone:
+                      </span>
+                      +40 748 15 66 59
+                    </a>
+                  </li>
+                </ul>
+              </section>
             </section>
           </section>
         </section>
