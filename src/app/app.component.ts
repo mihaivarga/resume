@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { initFlowbite } from 'flowbite';
+import { initFlowbite } from 'flowbite';import { inject } from '@vercel/analytics';import { injectSpeedInsights } from '@vercel/speed-insights';
+
 
 @Component({
     selector: 'app-root',
@@ -12,6 +13,8 @@ export class AppComponent implements OnInit {
   title = 'resume';
 
   ngOnInit(): void {
+    inject();
+    injectSpeedInsights();
     initFlowbite();
   }
 
