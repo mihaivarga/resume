@@ -1,33 +1,72 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { initFlowbite } from 'flowbite';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
+import { ViewportScroller } from '@angular/common';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import { WeatherData, WeatherService } from './services/weather.service';
+import { HeroComponent } from './components/hero.component';
+import { SummaryComponent } from './components/summary.component';
+import { SkillsComponent } from './components/skills.component';
+import { ExperienceComponent } from './components/experience.component';
+import { EducationComponent } from './components/education.component';
+import { ContactComponent } from './components/contact.component';
+import {
+  PROFILE,
+  SUMMARY,
+  SKILL_GROUPS,
+  EXPERIENCE,
+  EDUCATION,
+  CONTACT,
+} from './resume.data';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    imports: [],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    HeroComponent,
+    SummaryComponent,
+    SkillsComponent,
+    ExperienceComponent,
+    EducationComponent,
+    ContactComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  title = 'resume';
-  weather: WeatherData | null = null;
-  isDark = false;
-  isMenuOpen = false;
+  readonly profile = PROFILE;
+  readonly summary = SUMMARY;
+  readonly skillGroups = SKILL_GROUPS;
+  readonly experience = EXPERIENCE;
+  readonly education = EDUCATION;
+  readonly contact = CONTACT;
+
+  weather = signal<WeatherData | null>(null);
+  isDark = signal(false);
+  isMenuOpen = signal(false);
 
   private readonly weatherService = inject(WeatherService);
+  private readonly scroller = inject(ViewportScroller);
+  private readonly destroyRef = inject(DestroyRef);
 
   async ngOnInit(): Promise<void> {
     injectAnalytics();
     injectSpeedInsights();
-    initFlowbite();
-
     this.initDarkMode();
-    this.weather = await this.weatherService.getWeather();
-    if (this.weather) {
-      const [c1, c2, c3] = this.weather.colors;
+
+    const data = await this.weatherService.getWeather();
+    this.weather.set(data);
+    if (data) {
+      const [c1, c2, c3] = data.colors;
       document.body.style.setProperty('--wc1', c1);
       document.body.style.setProperty('--wc2', c2);
       document.body.style.setProperty('--wc3', c3);
@@ -35,27 +74,33 @@ export class AppComponent implements OnInit {
   }
 
   toggleDarkMode(): void {
-    this.setDark(!this.isDark);
+    this.setDark(!this.isDark());
   }
 
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.update(v => !v);
+  }
+
+  printPage(): void {
+    window.print();
+  }
+
+  goTo(section: string): void {
+    this.isMenuOpen.set(false);
+    this.scroller.scrollToAnchor(section);
   }
 
   private initDarkMode(): void {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     this.setDark(mq.matches);
-    mq.addEventListener('change', (e) => this.setDark(e.matches));
+
+    fromEvent<MediaQueryListEvent>(mq, 'change')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(e => this.setDark(e.matches));
   }
 
   private setDark(dark: boolean): void {
-    this.isDark = dark;
+    this.isDark.set(dark);
     document.documentElement.classList.toggle('dark', dark);
-  }
-
-  goTo(section: string) {
-    this.isMenuOpen = false;
-    const el = document.getElementById(`${section}`);
-    el?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   }
 }

@@ -34,6 +34,9 @@ export class WeatherService {
   }
 
   private getCoords(): Promise<{ latitude: number; longitude: number }> {
+    if (!navigator?.geolocation) {
+      return Promise.reject(new Error('Geolocation not supported'));
+    }
     return new Promise((resolve, reject) =>
       navigator.geolocation.getCurrentPosition(
         (pos) => resolve({ latitude: pos.coords.latitude, longitude: pos.coords.longitude }),
