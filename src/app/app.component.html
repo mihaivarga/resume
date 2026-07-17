@@ -35,7 +35,7 @@
     <div class="flex justify-between items-center">
       <a
         href="#"
-        (click)="goTo('home-part')"
+        (click)="goTo('home-part'); $event.preventDefault()"
         class="font-bold text-gray-800 dark:text-gray-100 transition-all duration-300"
         [class.text-2xl]="!navScrolled()"
         [class.text-lg]="navScrolled()"
@@ -92,7 +92,7 @@
       @for (link of navLinks; track link.anchor) {
         <a
           href="#"
-          (click)="goTo(link.anchor)"
+          (click)="goTo(link.anchor); $event.preventDefault()"
           class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors pb-0.5"
           [class.active]="activeSection() === link.anchor"
         >{{ link.label }}</a>
@@ -132,10 +132,9 @@
     @for (link of navLinks; track link.anchor) {
       <a
         href="#"
-        (click)="goTo(link.anchor)"
+        (click)="goTo(link.anchor); $event.preventDefault()"
         class="nav-link-drawer py-3 px-4 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all font-medium"
         [class.bg-blue-50]="activeSection() === link.anchor"
-        [class.dark:bg-gray-800]="activeSection() === link.anchor"
         [class.text-blue-600]="activeSection() === link.anchor"
       >{{ link.label }}</a>
     }
