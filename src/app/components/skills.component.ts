@@ -21,7 +21,9 @@ import { SkillGroup } from '../resume.data';
             </p>
             <ul class="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
               @for (skill of group.skills; track skill) {
-                <li class="skill-item p-1.5 mb-1 leading-relaxed text-white bg-gray-800 dark:bg-gray-600 mr-1.6 print:bg-white print:border-inset">
+                <li
+                  [class]="'skill-item ' + getCategoryClass(group.category) + ' p-1.5 mb-1 leading-relaxed text-white bg-gray-800 dark:bg-gray-600 mr-1.6 print:bg-white print:border-inset'"
+                >
                   {{ skill }}
                 </li>
               }
@@ -34,4 +36,15 @@ import { SkillGroup } from '../resume.data';
 })
 export class SkillsComponent {
   @Input() groups: SkillGroup[] = [];
+
+  getCategoryClass(category: string): string {
+    const map: Record<string, string> = {
+      'Backend':               'skill-backend',
+      'Frontend':              'skill-frontend',
+      'Cloud & DevOps':        'skill-cloud',
+      'Databases & Data':      'skill-databases',
+      'Methodologies & Tools': 'skill-methods',
+    };
+    return map[category] ?? 'skill-backend';
+  }
 }
