@@ -112,9 +112,8 @@
 
 <!-- ── Mobile slide-in drawer ────────────────────────────── -->
 <aside
-  class="mobile-drawer fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-50 flex flex-col pt-6 px-6 md:hidden print:hidden transition-transform duration-300"
-  [class.translate-x-0]="isMenuOpen()"
-  [class.translate-x-full]="!isMenuOpen()"
+  class="mobile-drawer fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-50 flex flex-col pt-6 px-6 md:hidden print:hidden"
+  [class.drawer-open]="isMenuOpen()"
   aria-label="Navigation menu"
 >
   <div class="flex justify-between items-center mb-8">

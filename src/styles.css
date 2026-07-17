@@ -101,7 +101,12 @@ body {
 
 /* ── Mobile slide-in drawer ─────────────────────────────────── */
 .mobile-drawer {
-  transform: translateX(100%);
+  transform: translateX(100%); /* hidden by default */
+  transition: transform 0.3s ease;
+}
+
+.mobile-drawer.drawer-open {
+  transform: translateX(0);
 }
 
 /* ── Experience expand/collapse ─────────────────────────────── */
