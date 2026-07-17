@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   OnInit,
+  afterNextRender,
   inject,
   signal,
 } from '@angular/core';
@@ -50,18 +51,38 @@ export class AppComponent implements OnInit {
   readonly education = EDUCATION;
   readonly contact = CONTACT;
 
-  weather = signal<WeatherData | null>(null);
-  isDark = signal(false);
-  isMenuOpen = signal(false);
+  readonly navLinks = [
+    { label: 'Home',       anchor: 'home-part'       },
+    { label: 'Summary',    anchor: 'summary-part'    },
+    { label: 'Skills',     anchor: 'skills-part'     },
+    { label: 'Experience', anchor: 'experience-part' },
+    { label: 'Education',  anchor: 'education-part'  },
+    { label: 'Contact',    anchor: 'contact-part'    },
+  ];
+
+  weather      = signal<WeatherData | null>(null);
+  isDark       = signal(false);
+  isMenuOpen   = signal(false);
+  activeSection = signal<string>('home-part');
+  scrollProgress = signal<number>(0);
+  navScrolled  = signal<boolean>(false);
 
   private readonly weatherService = inject(WeatherService);
-  private readonly scroller = inject(ViewportScroller);
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly scroller       = inject(ViewportScroller);
+  private readonly destroyRef     = inject(DestroyRef);
+
+  constructor() {
+    afterNextRender(() => {
+      this.initRevealObserver();
+      this.initScrollSpy();
+    });
+  }
 
   async ngOnInit(): Promise<void> {
     injectAnalytics();
     injectSpeedInsights();
     this.initDarkMode();
+    this.initScrollListener();
 
     const data = await this.weatherService.getWeather();
     this.weather.set(data);
@@ -90,17 +111,52 @@ export class AppComponent implements OnInit {
     this.scroller.scrollToAnchor(section);
   }
 
+  // ── Private ───────────────────────────────────────────────
+
+  private initScrollListener(): void {
+    fromEvent(window, 'scroll')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        const scrollTop  = window.scrollY;
+        const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+        this.scrollProgress.set(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+        this.navScrolled.set(scrollTop > 50);
+      });
+  }
+
+  private initRevealObserver(): void {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08 },
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  private initScrollSpy(): void {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => { if (e.isIntersecting) this.activeSection.set(e.target.id); });
+      },
+      { rootMargin: '-25% 0px -65% 0px', threshold: 0 },
+    );
+    this.navLinks.forEach(({ anchor }) => {
+      const el = document.getElementById(anchor);
+      if (el) observer.observe(el);
+    });
+  }
+
   private initDarkMode(): void {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     this.setDark(mq.matches);
-
     fromEvent<MediaQueryListEvent>(mq, 'change')
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(e => this.setDark(e.matches));
   }
 
   private setDark(dark: boolean): void {
+    document.documentElement.classList.add('theme-transitioning');
     this.isDark.set(dark);
     document.documentElement.classList.toggle('dark', dark);
+    setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 400);
   }
 }

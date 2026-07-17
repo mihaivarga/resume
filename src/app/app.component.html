@@ -6,13 +6,43 @@
   </div>
 }
 
-<header class="bg-white dark:bg-gray-900 fixed top-0 w-full shadow-md dark:shadow-gray-800 z-50">
-  <nav class="container mx-auto px-6 py-3">
-    <!-- Top bar: logo + controls (always visible) -->
+<!-- ── Scroll progress bar ───────────────────────────────── -->
+<div
+  class="progress-bar print:hidden"
+  [style.width.%]="scrollProgress()"
+  aria-hidden="true"
+></div>
+
+<!-- ── Nav backdrop overlay for mobile drawer ───────────── -->
+@if (isMenuOpen()) {
+  <div
+    class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden print:hidden"
+    (click)="toggleMenu()"
+    aria-hidden="true"
+  ></div>
+}
+
+<!-- ── Header ────────────────────────────────────────────── -->
+<header
+  class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-sm dark:shadow-gray-800 transition-all duration-300 print:hidden"
+  [class.nav-scrolled]="navScrolled()"
+>
+  <nav class="container mx-auto px-6 transition-all duration-300"
+       [class.py-3]="!navScrolled()"
+       [class.py-1]="navScrolled()">
+
+    <!-- Top bar: logo + controls -->
     <div class="flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-gray-800 dark:text-gray-100">Mihai Simion Varga</a>
+      <a
+        href="#"
+        (click)="goTo('home-part')"
+        class="font-bold text-gray-800 dark:text-gray-100 transition-all duration-300"
+        [class.text-2xl]="!navScrolled()"
+        [class.text-lg]="navScrolled()"
+      >Mihai Simion Varga</a>
+
       <div class="flex items-center space-x-2">
-        <!-- Download PDF button -->
+        <!-- Download PDF -->
         <button
           (click)="printPage()"
           class="btn-download p-1.5 rounded-lg text-white font-semibold text-xs"
@@ -38,7 +68,7 @@
             </svg>
           }
         </button>
-        <!-- Hamburger button: mobile only -->
+        <!-- Hamburger: mobile only -->
         <button
           class="md:hidden p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           (click)="toggleMenu()"
@@ -57,43 +87,76 @@
       </div>
     </div>
 
-    <!-- Nav links -->
-    <div
-      [class]="isMenuOpen()
-        ? 'flex flex-col items-start space-y-3 mt-3 pt-3 border-t border-gray-200 dark:border-gray-700'
-        : 'hidden md:flex md:flex-row md:items-center md:space-x-4 md:mt-2'"
-    >
-      @for (link of [
-        { label: 'Home',       anchor: 'home-part'       },
-        { label: 'Summary',    anchor: 'summary-part'    },
-        { label: 'Skills',     anchor: 'skills-part'     },
-        { label: 'Experience', anchor: 'experience-part' },
-        { label: 'Education',  anchor: 'education-part'  },
-        { label: 'Contact',    anchor: 'contact-part'    }
-      ]; track link.anchor) {
+    <!-- Desktop nav links -->
+    <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 md:mt-2">
+      @for (link of navLinks; track link.anchor) {
         <a
           href="#"
           (click)="goTo(link.anchor)"
-          class="text-gray-800 dark:text-gray-100 hover:text-blue-600"
+          class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors pb-0.5"
+          [class.active]="activeSection() === link.anchor"
         >{{ link.label }}</a>
       }
-
       @if (weather()) {
         <span
-          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
+          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600 ml-auto"
           [title]="weather()!.label"
         >
           {{ weather()!.city }}, {{ weather()!.country }} · {{ weather()!.emoji }} {{ weather()!.temperature }}°C
         </span>
       }
     </div>
+
   </nav>
 </header>
 
+<!-- ── Mobile slide-in drawer ────────────────────────────── -->
+<aside
+  class="mobile-drawer fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-50 flex flex-col pt-6 px-6 md:hidden print:hidden transition-transform duration-300"
+  [class.translate-x-0]="isMenuOpen()"
+  [class.translate-x-full]="!isMenuOpen()"
+  aria-label="Navigation menu"
+>
+  <div class="flex justify-between items-center mb-8">
+    <span class="text-lg font-bold text-gray-800 dark:text-gray-100">Menu</span>
+    <button
+      class="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      (click)="toggleMenu()"
+      title="Close menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-col space-y-1">
+    @for (link of navLinks; track link.anchor) {
+      <a
+        href="#"
+        (click)="goTo(link.anchor)"
+        class="nav-link-drawer py-3 px-4 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all font-medium"
+        [class.bg-blue-50]="activeSection() === link.anchor"
+        [class.dark:bg-gray-800]="activeSection() === link.anchor"
+        [class.text-blue-600]="activeSection() === link.anchor"
+      >{{ link.label }}</a>
+    }
+  </nav>
+  @if (weather()) {
+    <div class="mt-auto mb-8">
+      <span
+        class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600"
+      >
+        {{ weather()!.city }}, {{ weather()!.country }} · {{ weather()!.emoji }} {{ weather()!.temperature }}°C
+      </span>
+    </div>
+  }
+</aside>
+
+<!-- ── Main content ───────────────────────────────────────── -->
 <main class="font-jost hyphens-manual pt-20">
   <section class="p-3 my-auto mx-auto max-w-3xl bg-gray-100 dark:bg-gray-800 rounded-2xl border-4 border-gray-700 dark:border-gray-600 sm:p-9 md:p-16 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-0 xsm:p-8 print:bg-white md:max-w-letter">
 
-    <!-- Hero / Name -->
+    <!-- Hero -->
     <app-hero
       [name]="profile.name"
       [title]="profile.title"
@@ -104,20 +167,30 @@
     <section class="col-gap-8 print:col-count-2 print:h-letter-col-full col-fill-balance md:col-count-2">
       <section class="flex-col">
 
-        <app-summary
-          [body]="summary.body"
-          [body2]="summary.body2"
-          [coreCompetencies]="summary.coreCompetencies"
-          [primaryStack]="summary.primaryStack"
-        />
+        <div class="reveal">
+          <app-summary
+            [body]="summary.body"
+            [body2]="summary.body2"
+            [coreCompetencies]="summary.coreCompetencies"
+            [primaryStack]="summary.primaryStack"
+          />
+        </div>
 
-        <app-skills [groups]="skillGroups" />
+        <div class="reveal reveal-delay-1">
+          <app-skills [groups]="skillGroups" />
+        </div>
 
-        <app-experience [entries]="experience" />
+        <div class="reveal reveal-delay-2">
+          <app-experience [entries]="experience" />
+        </div>
 
-        <app-education [entries]="education" />
+        <div class="reveal reveal-delay-1">
+          <app-education [entries]="education" />
+        </div>
 
-        <app-contact [entries]="contact" />
+        <div class="reveal reveal-delay-2">
+          <app-contact [entries]="contact" />
+        </div>
 
       </section>
     </section>
