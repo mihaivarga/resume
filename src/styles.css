@@ -109,6 +109,16 @@ body {
   transform: translateX(0);
 }
 
+.drawer-active {
+  background-color: #eff6ff; /* blue-50 */
+  color: #2563eb; /* blue-600 */
+}
+
+.dark .drawer-active {
+  background-color: #1e3a5f; /* dark blue tint */
+  color: #93c5fd; /* blue-300 */
+}
+
 /* ── Experience expand/collapse ─────────────────────────────── */
 .exp-details {
   overflow: hidden;

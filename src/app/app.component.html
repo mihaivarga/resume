@@ -134,8 +134,7 @@
         href="#"
         (click)="goTo(link.anchor); $event.preventDefault()"
         class="nav-link-drawer py-3 px-4 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all font-medium"
-        [class.bg-blue-50]="activeSection() === link.anchor"
-        [class.text-blue-600]="activeSection() === link.anchor"
+        [class.drawer-active]="activeSection() === link.anchor"
       >{{ link.label }}</a>
     }
   </nav>
