@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export interface WeatherData {
+  season: 'spring' | 'summer' | 'autumn' | 'winter';
+  condition: 'clear' | 'cloudy' | 'foggy' | 'rainy' | 'snowy' | 'stormy';
   city: string;
   country: string;
   temperature: number;
@@ -46,26 +48,46 @@ export class WeatherService {
     );
   }
 
-  private interpret(code: number, isDay: boolean): { label: string; emoji: string; colors: [string, string, string] } {
+  private interpret(code: number, isDay: boolean): { label: string; emoji: string; colors: [string, string, string]; season: 'spring' | 'summer' | 'autumn' | 'winter'; condition: 'clear' | 'cloudy' | 'foggy' | 'rainy' | 'snowy' | 'stormy' } {
+    const month = new Date().getMonth();
+    const season: 'spring' | 'summer' | 'autumn' | 'winter' = 
+      month >= 2 && month <= 4 ? 'spring' :
+      month >= 5 && month <= 7 ? 'summer' :
+      month >= 8 && month <= 10 ? 'autumn' : 'winter';
+
+    let condition: 'clear' | 'cloudy' | 'foggy' | 'rainy' | 'snowy' | 'stormy';
+    let label: string;
+    let emoji: string;
+    let colors: [string, string, string];
+
     if (code === 0) {
-      return isDay
-        ? { label: 'Clear',       emoji: '☀️', colors: ['#FFD700', '#FF8C42', '#4FC3F7'] }
-        : { label: 'Clear Night', emoji: '🌙', colors: ['#1a1a4e', '#6c5ce7', '#a29bfe'] };
+      condition = 'clear';
+      if (isDay) {
+        label = 'Clear'; emoji = '☀️'; colors = ['#FFD700', '#FF8C42', '#4FC3F7'];
+      } else {
+        label = 'Clear Night'; emoji = '🌙'; colors = ['#1a1a4e', '#6c5ce7', '#a29bfe'];
+      }
+    } else if (code <= 3) {
+      condition = 'cloudy';
+      if (isDay) {
+        label = 'Partly Cloudy'; emoji = '⛅'; colors = ['#74b9ff', '#a8c0cc', '#dfe6e9'];
+      } else {
+        label = 'Cloudy Night'; emoji = '☁️'; colors = ['#1a1a2e', '#2d3561', '#0f3460'];
+      }
+    } else if (code <= 48) {
+      condition = 'foggy';
+      label = 'Foggy'; emoji = '🌫️'; colors = ['#b2bec3', '#90a4ae', '#cfd8dc'];
+    } else if (code <= 67) {
+      condition = 'rainy';
+      label = 'Rainy'; emoji = '🌧️'; colors = ['#1565C0', '#0288D1', '#29B6F6'];
+    } else if (code <= 86) {
+      condition = 'snowy';
+      label = 'Snowy'; emoji = '❄️'; colors = ['#bbdefb', '#81d4fa', '#e3f2fd'];
+    } else {
+      condition = 'stormy';
+      label = 'Stormy'; emoji = '⛈️'; colors = ['#1c1c2e', '#4a148c', '#6a1b9a'];
     }
-    if (code <= 3) {
-      return isDay
-        ? { label: 'Partly Cloudy', emoji: '⛅', colors: ['#74b9ff', '#a8c0cc', '#dfe6e9'] }
-        : { label: 'Cloudy Night', emoji: '☁️', colors: ['#1a1a2e', '#2d3561', '#0f3460'] };
-    }
-    if (code <= 48) {
-      return { label: 'Foggy',  emoji: '🌫️', colors: ['#b2bec3', '#90a4ae', '#cfd8dc'] };
-    }
-    if (code <= 67) {
-      return { label: 'Rainy',  emoji: '🌧️', colors: ['#1565C0', '#0288D1', '#29B6F6'] };
-    }
-    if (code <= 86) {
-      return { label: 'Snowy',  emoji: '❄️', colors: ['#bbdefb', '#81d4fa', '#e3f2fd'] };
-    }
-    return   { label: 'Stormy', emoji: '⛈️', colors: ['#1c1c2e', '#4a148c', '#6a1b9a'] };
+
+    return { label, emoji, colors, season, condition };
   }
 }

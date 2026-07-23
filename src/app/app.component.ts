@@ -13,6 +13,7 @@ import { ViewportScroller } from '@angular/common';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import { WeatherData, WeatherService } from './services/weather.service';
+import { BackgroundService } from './services/background.service';
 import { HeroComponent } from './components/hero.component';
 import { SummaryComponent } from './components/summary.component';
 import { SkillsComponent } from './components/skills.component';
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit {
   ];
 
   weather      = signal<WeatherData | null>(null);
+  backgroundUrl = signal<string | undefined>(undefined);
   isDark       = signal(false);
   isMenuOpen   = signal(false);
   activeSection = signal<string>('home-part');
@@ -68,6 +70,7 @@ export class AppComponent implements OnInit {
   navScrolled  = signal<boolean>(false);
 
   private readonly weatherService = inject(WeatherService);
+  private readonly backgroundService = inject(BackgroundService);
   private readonly scroller       = inject(ViewportScroller);
   private readonly destroyRef     = inject(DestroyRef);
 
@@ -91,6 +94,7 @@ export class AppComponent implements OnInit {
       document.body.style.setProperty('--wc1', c1);
       document.body.style.setProperty('--wc2', c2);
       document.body.style.setProperty('--wc3', c3);
+      this.backgroundUrl.set(this.backgroundService.getBackgroundUrl(data));
     }
   }
 

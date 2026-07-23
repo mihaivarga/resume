@@ -1,5 +1,7 @@
-@if (weather()) {
+@if (backgroundUrl()) {
   <div class="weather-bg" aria-hidden="true">
+    <img [src]="backgroundUrl()" alt="" class="weather-bg-img" />
+    <div class="weather-scrim"></div>
     <div class="weather-blob weather-blob-1"></div>
     <div class="weather-blob weather-blob-2"></div>
     <div class="weather-blob weather-blob-3"></div>
