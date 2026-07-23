@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       class="pb-4 mt-0 first:mt-0"
     >
       <section class="break-inside-avoid">
-        <h2 class="mb-2 text-xl font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
+        <h2 class="mb-3 pb-2 border-b border-gray-300 dark:border-gray-600 text-xl font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
           SUMMARY
         </h2>
         <section class="mb-2 break-inside-avoid">

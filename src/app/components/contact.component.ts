@@ -8,7 +8,7 @@ import { ContactEntry } from '../resume.data';
   template: `
     <section id="contact-part" class="pb-2 mt-4 mb-0 first:mt-0">
       <section class="break-inside-avoid">
-        <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
+        <h2 class="mb-3 pb-2 border-b border-gray-300 dark:border-gray-600 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
           CONTACT
         </h2>
         <section class="pb-4 mb-2 break-inside-avoid">

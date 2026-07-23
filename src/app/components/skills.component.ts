@@ -11,7 +11,7 @@ import { SkillGroup } from '../resume.data';
       class="pb-6 mt-4 mb-4 first:mt-0 break-inside-avoid"
     >
       <section class="break-inside-avoid">
-        <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
+        <h2 class="mb-3 pb-2 border-b border-gray-300 dark:border-gray-600 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
           SKILLS
         </h2>
         @for (group of groups; track group.category) {

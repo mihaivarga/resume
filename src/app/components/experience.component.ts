@@ -16,7 +16,7 @@ import { ExperienceEntry } from '../resume.data';
       class="pb-4 mt-4 first:mt-0"
     >
       <section class="break-inside-avoid">
-        <h2 class="mb-2 text-xl font-black tracking-widest text-gray-800 dark:text-gray-100 print:font-normal">
+        <h2 class="mb-3 pb-2 border-b border-gray-300 dark:border-gray-600 text-xl font-black tracking-widest text-gray-800 dark:text-gray-100 print:font-normal">
           EXPERIENCE
         </h2>
         @for (entry of entries; track entry.company; let i = $index) {
