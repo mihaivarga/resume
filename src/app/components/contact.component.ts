@@ -11,7 +11,7 @@ import { ContactEntry } from '../resume.data';
         <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
           CONTACT
         </h2>
-        <section class="pb-4 mb-2 border-b-4 border-gray-300 dark:border-gray-600 break-inside-avoid">
+        <section class="pb-4 mb-2 break-inside-avoid">
           <ul class="pr-7 list-inside">
             @for (item of entries; track item.label) {
               <li class="mt-1 leading-normal text-gray-500 dark:text-gray-400 transition duration-100 ease-in hover:text-gray-700 text-md">

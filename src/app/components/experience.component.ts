@@ -13,14 +13,14 @@ import { ExperienceEntry } from '../resume.data';
   template: `
     <section
       id="experience-part"
-      class="pb-4 mt-4 border-b-4 border-gray-300 dark:border-gray-600 first:mt-0"
+      class="pb-4 mt-4 first:mt-0"
     >
       <section class="break-inside-avoid">
         <h2 class="mb-2 text-xl font-black tracking-widest text-gray-800 dark:text-gray-100 print:font-normal">
           EXPERIENCE
         </h2>
         @for (entry of entries; track entry.company; let i = $index) {
-          <section class="mb-2 border-b-2 border-gray-300 dark:border-gray-600 break-inside-avoid pb-2">
+          <section class="mb-2 break-inside-avoid pb-2">
             <header>
               <h3 class="font-semibold text-gray-800 dark:text-gray-100 text-md leading-snugish">
                 {{ entry.title }}

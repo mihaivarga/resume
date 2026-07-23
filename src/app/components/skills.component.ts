@@ -8,7 +8,7 @@ import { SkillGroup } from '../resume.data';
   template: `
     <section
       id="skills-part"
-      class="pb-6 mt-4 mb-4 border-b-4 border-gray-300 dark:border-gray-600 first:mt-0 break-inside-avoid"
+      class="pb-6 mt-4 mb-4 first:mt-0 break-inside-avoid"
     >
       <section class="break-inside-avoid">
         <h2 class="mb-2 text-lg font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">

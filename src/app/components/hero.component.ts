@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <header
       id="home-part"
-      class="flex justify-between items-center mb-2 w-full border-b-4 border-gray-300 dark:border-gray-600 pb-4"
+      class="flex justify-between items-center mb-2 w-full pb-4"
     >
       <section class="block animate-fade-in">
         <h1 class="mb-0 text-5xl font-bold">

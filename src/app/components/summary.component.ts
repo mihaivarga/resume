@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <section
       id="summary-part"
-      class="pb-4 mt-0 border-b-4 border-gray-300 dark:border-gray-600 first:mt-0"
+      class="pb-4 mt-0 first:mt-0"
     >
       <section class="break-inside-avoid">
         <h2 class="mb-2 text-xl font-bold tracking-widest text-gray-700 dark:text-gray-200 print:font-normal">
