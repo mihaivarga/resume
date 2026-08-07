@@ -115,35 +115,24 @@ export class AppComponent implements OnInit {
   downloadCV(): void {
     const element = document.querySelector('main') as HTMLElement;
     if (!element) return;
-    // Override Tailwind oklch colors that html2canvas can't parse
-    const htmlEl = document.documentElement;
-    const hadDark = htmlEl.classList.contains('dark');
-    htmlEl.classList.remove('dark');
-    const style = document.createElement('style');
-    style.id = 'pdf-temp-override';
-    style.textContent = `
-      *, *::before, *::after {
-        color: #374151 !important;
-        background-color: #ffffff !important;
-        border-color: #e5e7eb !important;
-        text-shadow: none !important;
-        box-shadow: none !important;
-      }
-      .btn-download { background-color: #2563eb !important; color: #ffffff !important; }
-      a { color: #2563eb !important; }
-    `;
-    document.head.appendChild(style);
     html2pdf().set({
       margin:        [0.5, 0.5, 0.5, 0.5],
       filename:      'CV.pdf',
       image:         { type: 'jpeg', quality: 0.98 },
-      html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
+      html2canvas:   {
+        scale: 2,
+        letterRendering: true,
+        useCORS: true,
+        onclone: (doc: Document) => {
+          // Strip oklch colors from the cloned document before rendering
+          const s = doc.createElement('style');
+          s.textContent = `*, *::before, *::after { color: #374151 !important; background-color: #ffffff !important; border-color: #e5e7eb !important; } .btn-download { background-color: #2563eb !important; color: #fff !important; } a { color: #2563eb !important; }`;
+          doc.head.appendChild(s);
+          doc.documentElement.classList.remove('dark');
+        },
+      },
       jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
     }).from(element).save();
-    setTimeout(() => {
-      document.getElementById('pdf-temp-override')?.remove();
-      if (hadDark) htmlEl.classList.add('dark');
-    }, 100);
   }
 
   goTo(section: string): void {
