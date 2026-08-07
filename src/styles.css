@@ -193,6 +193,58 @@ body {
   box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
 
+/* ── PDF capture mode ───────────────────────────────────────
+   Set on <html> for the single frame in which html2canvas snapshots the
+   DOM. Angular component tags are custom elements, which forces the
+   cloner down its "inline every computed style" path — so the PDF is a
+   copy of whatever the live page looks like at that instant, and the
+   layout has to be corrected here rather than on the clone. */
+.pdf-capture,
+.pdf-capture * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Fixed sheet width — keeps the PDF independent of the browser window. */
+.pdf-capture .page {
+  width: 820px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+
+/* Reveal/entrance animations never get to run during a capture. */
+.pdf-capture .reveal,
+.pdf-capture .animate-fade-in,
+.pdf-capture [class*="animate-delay"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Gradient text is painted via background-clip, which a canvas drops. */
+.pdf-capture .bg-clip-text {
+  background-image: none !important;
+  color: var(--accent-dark) !important;
+  -webkit-text-fill-color: var(--accent-dark) !important;
+}
+
+/* Collapsed experience bullets still belong in the PDF. */
+.pdf-capture .exp-details {
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+.pdf-capture .exp-toggle-btn,
+.pdf-capture .progress-bar,
+.pdf-capture .weather-bg {
+  display: none !important;
+}
+
 /* ── Weather aurora background ──────────────────────────────── */
 .weather-bg {
   position: fixed;
