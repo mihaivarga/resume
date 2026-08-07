@@ -28,7 +28,8 @@ import {
   EDUCATION,
   CONTACT,
 } from './resume.data';
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 
 @Component({
@@ -112,27 +113,43 @@ export class AppComponent implements OnInit {
     window.print();
   }
 
-  downloadCV(): void {
+  async downloadCV(): Promise<void> {
     const element = document.querySelector('main') as HTMLElement;
     if (!element) return;
-    html2pdf().set({
-      margin:        [0.5, 0.5, 0.5, 0.5],
-      filename:      'CV.pdf',
-      image:         { type: 'jpeg', quality: 0.98 },
-      html2canvas:   {
+    try {
+      // Override oklch colors in a cloned document via html2canvas onclone
+      const canvas = await html2canvas(element, {
         scale: 2,
-        letterRendering: true,
         useCORS: true,
+        backgroundColor: '#ffffff',
         onclone: (doc: Document) => {
-          // Strip oklch colors from the cloned document before rendering
           const s = doc.createElement('style');
           s.textContent = `*, *::before, *::after { color: #374151 !important; background-color: #ffffff !important; border-color: #e5e7eb !important; } .btn-download { background-color: #2563eb !important; color: #fff !important; } a { color: #2563eb !important; }`;
           doc.head.appendChild(s);
           doc.documentElement.classList.remove('dark');
         },
-      },
-      jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
-    }).from(element).save();
+      });
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
+      const pdf = new jsPDF({ unit: 'in', format: 'a4', orientation: 'portrait' });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const margin = 0.5;
+      const imgW = pageW - margin * 2;
+      const imgH = (canvas.height * imgW) / canvas.width;
+      let remaining = imgH;
+      let y = margin;
+      pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
+      remaining -= pageH - margin * 2;
+      while (remaining > 0) {
+        y = margin - (imgH - remaining);
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
+        remaining -= pageH - margin * 2;
+      }
+      pdf.save('CV.pdf');
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+    }
   }
 
   goTo(section: string): void {
