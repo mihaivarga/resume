@@ -133,24 +133,17 @@ export class AppComponent implements OnInit {
       a { color: #2563eb !important; }
     `;
     document.head.appendChild(style);
-    html2pdf()
-      .set({
-        margin:        [0.5, 0.5, 0.5, 0.5],
-        filename:      'CV.pdf',
-        image:         { type: 'jpeg', quality: 0.98 },
-        html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
-        jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
-      })
-      .from(element)
-      .save()
-      .then(() => {
-        document.getElementById('pdf-temp-override')?.remove();
-        if (hadDark) htmlEl.classList.add('dark');
-      })
-      .catch(() => {
-        document.getElementById('pdf-temp-override')?.remove();
-        if (hadDark) htmlEl.classList.add('dark');
-      });
+    html2pdf().set({
+      margin:        [0.5, 0.5, 0.5, 0.5],
+      filename:      'CV.pdf',
+      image:         { type: 'jpeg', quality: 0.98 },
+      html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
+      jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
+    }).from(element).save();
+    setTimeout(() => {
+      document.getElementById('pdf-temp-override')?.remove();
+      if (hadDark) htmlEl.classList.add('dark');
+    }, 100);
   }
 
   goTo(section: string): void {
