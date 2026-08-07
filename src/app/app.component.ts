@@ -115,6 +115,24 @@ export class AppComponent implements OnInit {
   downloadCV(): void {
     const element = document.querySelector('main') as HTMLElement;
     if (!element) return;
+    // Override Tailwind oklch colors that html2canvas can't parse
+    const htmlEl = document.documentElement;
+    const hadDark = htmlEl.classList.contains('dark');
+    htmlEl.classList.remove('dark');
+    const style = document.createElement('style');
+    style.id = 'pdf-temp-override';
+    style.textContent = `
+      *, *::before, *::after {
+        color: #374151 !important;
+        background-color: #ffffff !important;
+        border-color: #e5e7eb !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+      }
+      .btn-download { background-color: #2563eb !important; color: #ffffff !important; }
+      a { color: #2563eb !important; }
+    `;
+    document.head.appendChild(style);
     html2pdf()
       .set({
         margin:        [0.5, 0.5, 0.5, 0.5],
@@ -124,7 +142,15 @@ export class AppComponent implements OnInit {
         jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' },
       })
       .from(element)
-      .save();
+      .save()
+      .then(() => {
+        document.getElementById('pdf-temp-override')?.remove();
+        if (hadDark) htmlEl.classList.add('dark');
+      })
+      .catch(() => {
+        document.getElementById('pdf-temp-override')?.remove();
+        if (hadDark) htmlEl.classList.add('dark');
+      });
   }
 
   goTo(section: string): void {
