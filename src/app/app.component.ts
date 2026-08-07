@@ -117,8 +117,31 @@ export class AppComponent implements OnInit {
     const element = document.querySelector('main') as HTMLElement;
     if (!element) return;
     try {
-      // Use foreignObjectRendering — renders via browser's native engine, bypasses
-      // html2canvas's CSS parser which can't handle Tailwind v4 oklch() colors
+      // Prepare the page for PDF capture
+      const htmlEl = document.documentElement;
+      const hadDark = htmlEl.classList.contains('dark');
+      htmlEl.classList.remove('dark'); // switch to light mode for PDF
+
+      // Force all reveal/animated elements visible
+      const reveals = document.querySelectorAll('.reveal, .animate-fade-in');
+      const revealed: { el: Element; added: boolean }[] = [];
+      reveals.forEach(el => {
+        if (!el.classList.contains('reveal') && !el.classList.contains('animate-fade-in')) return;
+        if (el.classList.contains('reveal') && !el.classList.contains('visible')) {
+          el.classList.add('visible');
+          revealed.push({ el, added: true });
+        }
+        // Force inline styles to ensure visibility in the cloned render
+        if (el.classList.contains('animate-fade-in') || el.classList.contains('reveal')) {
+          (el as HTMLElement).style.opacity = '1';
+          (el as HTMLElement).style.transform = 'none';
+        }
+      });
+
+      // Ensure the profile image is loaded
+      const img = document.querySelector('img[src*="photo"]') as HTMLImageElement;
+      if (img && !img.complete) await new Promise(r => { img.onload = r; img.onerror = r; });
+
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
@@ -126,6 +149,14 @@ export class AppComponent implements OnInit {
         foreignObjectRendering: true,
         logging: false,
       });
+
+      // Restore
+      revealed.forEach(({ el }) => {
+        (el as HTMLElement).style.opacity = '';
+        (el as HTMLElement).style.transform = '';
+        if (el.classList.contains('reveal')) el.classList.remove('visible');
+      });
+      if (hadDark) htmlEl.classList.add('dark');
       const imgData = canvas.toDataURL('image/jpeg', 0.98);
       const pdf = new jsPDF({ unit: 'in', format: 'a4', orientation: 'portrait' });
       const pageW = pdf.internal.pageSize.getWidth();
