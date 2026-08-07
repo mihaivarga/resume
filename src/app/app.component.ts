@@ -117,17 +117,14 @@ export class AppComponent implements OnInit {
     const element = document.querySelector('main') as HTMLElement;
     if (!element) return;
     try {
-      // Override oklch colors in a cloned document via html2canvas onclone
+      // Use foreignObjectRendering — renders via browser's native engine, bypasses
+      // html2canvas's CSS parser which can't handle Tailwind v4 oklch() colors
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
         backgroundColor: '#ffffff',
-        onclone: (doc: Document) => {
-          const s = doc.createElement('style');
-          s.textContent = `*, *::before, *::after { color: #374151 !important; background-color: #ffffff !important; border-color: #e5e7eb !important; } .btn-download { background-color: #2563eb !important; color: #fff !important; } a { color: #2563eb !important; }`;
-          doc.head.appendChild(s);
-          doc.documentElement.classList.remove('dark');
-        },
+        foreignObjectRendering: true,
+        logging: false,
       });
       const imgData = canvas.toDataURL('image/jpeg', 0.98);
       const pdf = new jsPDF({ unit: 'in', format: 'a4', orientation: 'portrait' });
