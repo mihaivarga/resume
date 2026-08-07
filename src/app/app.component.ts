@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
   OnInit,
   afterNextRender,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
@@ -28,9 +30,7 @@ import {
   EDUCATION,
   CONTACT,
 } from './resume.data';
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
+import { PdfService } from './services/pdf.service';
 
 @Component({
   selector: 'app-root',
@@ -64,6 +64,8 @@ export class AppComponent implements OnInit {
     { label: 'Contact',    anchor: 'contact-part'    },
   ];
 
+  readonly resumePage = viewChild.required<ElementRef<HTMLElement>>('resumePage');
+
   weather      = signal<WeatherData | null>(null);
   backgroundUrl = signal<string | undefined>(undefined);
   isDark       = signal(false);
@@ -71,9 +73,11 @@ export class AppComponent implements OnInit {
   activeSection = signal<string>('home-part');
   scrollProgress = signal<number>(0);
   navScrolled  = signal<boolean>(false);
+  pdfBusy      = signal(false);
 
   private readonly weatherService = inject(WeatherService);
   private readonly backgroundService = inject(BackgroundService);
+  private readonly pdfService     = inject(PdfService);
   private readonly scroller       = inject(ViewportScroller);
   private readonly destroyRef     = inject(DestroyRef);
 
@@ -114,69 +118,15 @@ export class AppComponent implements OnInit {
   }
 
   async downloadCV(): Promise<void> {
-    const element = document.querySelector('main') as HTMLElement;
-    if (!element) return;
+    if (this.pdfBusy()) return;
+    this.pdfBusy.set(true);
     try {
-      // Prepare the page for PDF capture
-      const htmlEl = document.documentElement;
-      const hadDark = htmlEl.classList.contains('dark');
-      htmlEl.classList.remove('dark'); // switch to light mode for PDF
-
-      // Force all reveal/animated elements visible
-      const reveals = document.querySelectorAll('.reveal, .animate-fade-in');
-      const revealed: { el: Element; added: boolean }[] = [];
-      reveals.forEach(el => {
-        if (!el.classList.contains('reveal') && !el.classList.contains('animate-fade-in')) return;
-        if (el.classList.contains('reveal') && !el.classList.contains('visible')) {
-          el.classList.add('visible');
-          revealed.push({ el, added: true });
-        }
-        // Force inline styles to ensure visibility in the cloned render
-        if (el.classList.contains('animate-fade-in') || el.classList.contains('reveal')) {
-          (el as HTMLElement).style.opacity = '1';
-          (el as HTMLElement).style.transform = 'none';
-        }
-      });
-
-      // Ensure the profile image is loaded
-      const img = document.querySelector('img[src*="photo"]') as HTMLImageElement;
-      if (img && !img.complete) await new Promise(r => { img.onload = r; img.onerror = r; });
-
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        foreignObjectRendering: true,
-        logging: false,
-      });
-
-      // Restore
-      revealed.forEach(({ el }) => {
-        (el as HTMLElement).style.opacity = '';
-        (el as HTMLElement).style.transform = '';
-        if (el.classList.contains('reveal')) el.classList.remove('visible');
-      });
-      if (hadDark) htmlEl.classList.add('dark');
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
-      const pdf = new jsPDF({ unit: 'in', format: 'a4', orientation: 'portrait' });
-      const pageW = pdf.internal.pageSize.getWidth();
-      const pageH = pdf.internal.pageSize.getHeight();
-      const margin = 0.5;
-      const imgW = pageW - margin * 2;
-      const imgH = (canvas.height * imgW) / canvas.width;
-      let remaining = imgH;
-      let y = margin;
-      pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
-      remaining -= pageH - margin * 2;
-      while (remaining > 0) {
-        y = margin - (imgH - remaining);
-        pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
-        remaining -= pageH - margin * 2;
-      }
-      pdf.save('CV.pdf');
+      const fileName = `${this.profile.name.replace(/\s+/g, '-')}-CV.pdf`;
+      await this.pdfService.download(this.resumePage().nativeElement, fileName);
     } catch (err) {
       console.error('PDF generation failed:', err);
+    } finally {
+      this.pdfBusy.set(false);
     }
   }
 
